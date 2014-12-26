@@ -14,8 +14,9 @@ import org.json.JSONObject;
 
 public class TemplateObject {
 	
-	String NameSpace;
-	List<TemplateVar> varList;
+	private String NameSpace;
+	private List<TemplateVar> varList;
+	private List<String> VarNameList;
 
 	File JsonFile;
 	JSONObject theJson;

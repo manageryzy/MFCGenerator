@@ -1,5 +1,8 @@
 package manageryzy.MFCGenerator;
 
+import manageryzy.MFCGenerator.data.TemplateObjectManager;
+import manageryzy.MFCGenerator.update.Update;
+
 public class MFCGenerator {
 	enum ARG{none,data_path,update_source,tasks};
 	enum Tasks{init,build,update};
@@ -12,7 +15,7 @@ public class MFCGenerator {
 	String UpdateSource = null;
 	Tasks theTask =Tasks.build;
 	
-	
+	TemplateObjectManager theTemplateObjectManager;
 	
 	public void setGUIEnabled(boolean isGUIEnabled) {
 		this.isGUIEnabled = isGUIEnabled;
@@ -58,12 +61,27 @@ public class MFCGenerator {
 	/**
 	 * the main method of the program
 	 */
-	public void run()
+	public void run() throws Exception
 	{
+		System.out.println("Minecraft Forge Class Generator");
 		
+		theTemplateObjectManager = new TemplateObjectManager(DataPath);
+		
+		switch(theTask)
+		{
+		case build:
+			
+			break;
+		case init:
+			
+			break;
+		case update:
+			Update.Update(DataPath, UpdateSource);
+			return;
+		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		theMFCGenerator = new MFCGenerator();
 		
 		if(args.length == 0)
