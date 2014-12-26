@@ -17,16 +17,26 @@ public class TemplateObject {
 	String NameSpace;
 	List<TemplateVar> varList;
 
-	String JsonFileName;
 	File JsonFile;
 	JSONObject theJson;
 	
+	
+	public TemplateObject(File file) 
+	{
+		JsonFile = file;
+		init();
+	}
+	
+
 	public TemplateObject(String FileName) 
 	{
+		JsonFile = new File(FileName);
+		init();
+	}
+	
+	void init()
+	{
 		varList = new ArrayList<TemplateVar>();
-		
-		JsonFileName = FileName;
-		JsonFile = new File(JsonFileName);
 		
 		try {
 
@@ -49,11 +59,19 @@ public class TemplateObject {
 	    }
 		
 		NameSpace = theJson.getString("Namespace");
-		
 	}
 	
 	
-	class TemplateVar
+	public String getNameSpace() {
+		return NameSpace;
+	}
+	
+	public List<TemplateVar> getVarList() {
+		return varList;
+	}
+	
+	
+	public class TemplateVar
 	{
 		VarTypes type;
 		String def;
